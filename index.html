@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LMS Basic Computer — STKIP Al Hikmah Surabaya</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-900:#0f4a2a; --green-700:#16703f; --green-600:#1d8a4e; --green-500:#2da35f; --green-100:#e3f4e9; --green-50:#f1faf4;
+  --yellow-500:#f9c80e; --yellow-400:#fbd53f; --yellow-100:#fff6d1;
+  --white:#ffffff; --ink:#173325; --muted:#587061; --line:#d7e8dd;
+  --radius:18px; --shadow:0 8px 24px rgba(15,74,42,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:'Nunito',system-ui,'Segoe UI',Arial,sans-serif;background:var(--white);color:var(--ink);line-height:1.6}
+h1,h2,h3{font-family:'Poppins','Nunito',system-ui,sans-serif;line-height:1.25}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* NAV (hijau) */
+nav{position:sticky;top:0;z-index:50;background:var(--green-700);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.brand{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand span.dot{background:var(--yellow-500);color:var(--green-900);width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:1rem}
+.links{display:flex;gap:4px;overflow-x:auto}
+.links a{text-decoration:none;font-weight:700;font-size:.9rem;padding:8px 12px;border-radius:999px;white-space:nowrap;color:#e9fbef}
+.links a:hover{background:rgba(255,255,255,.14)}
+.links a.cta{background:var(--yellow-500);color:var(--green-900)}
+
+/* HERO (hijau) */
+.hero{background:linear-gradient(135deg,var(--green-700),var(--green-900));color:#fff;padding:56px 0 72px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:var(--yellow-500);opacity:.18}
+.hero .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;position:relative;z-index:1}
+.chip{display:inline-block;background:var(--yellow-500);color:var(--green-900);font-weight:800;font-size:.8rem;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem);margin-bottom:10px}
+.hero p.sub{font-size:1.05rem;color:#d9f3e2;max-width:540px}
+.who{margin-top:18px;display:flex;gap:12px;align-items:center}
+.avatar{width:50px;height:50px;border-radius:50%;background:var(--yellow-500);color:var(--green-900);font-family:'Poppins';font-weight:800;display:grid;place-items:center;font-size:1.1rem;flex:none}
+.who b{display:block}.who small{color:#bfe6cc}
+.btns{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:800;border:0;cursor:pointer;text-decoration:none;padding:11px 20px;border-radius:999px;font-size:.95rem;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.y{background:var(--yellow-500);color:var(--green-900)}
+.btn.w{background:#fff;color:var(--green-700)}
+.btn.g{background:var(--green-600);color:#fff}
+.btn.o{background:transparent;border:2px solid var(--green-600);color:var(--green-700)}
+.btn.small{padding:8px 14px;font-size:.85rem}
+.ring-card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:22px;text-align:center;box-shadow:var(--shadow)}
+.ring{width:140px;height:140px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green-600) calc(var(--p)*1%),var(--green-100) 0)}
+.ring div{width:108px;height:108px;border-radius:50%;background:#fff;display:grid;place-items:center;font-family:'Poppins';font-weight:800;font-size:1.8rem;color:var(--green-700)}
+.ring-card small{color:var(--muted)}
+
+/* SECTIONS (putih) */
+section{padding:56px 0}
+section.tint{background:var(--green-50)}
+.sec-title{font-size:clamp(1.4rem,3vw,1.9rem);color:var(--green-900);margin-bottom:6px}
+.sec-title::after{content:"";display:block;width:64px;height:6px;border-radius:6px;background:var(--yellow-500);margin-top:8px}
+.sec-sub{color:var(--muted);margin:10px 0 26px;max-width:680px}
+
+/* Pengumuman */
+.ann{background:var(--yellow-100);border:2px solid var(--yellow-500);border-radius:var(--radius);padding:16px 20px;margin-top:-40px;position:relative;z-index:2;box-shadow:var(--shadow)}
+.ann h3{font-size:1rem;margin-bottom:6px;color:var(--green-900)}
+.ann li{margin-left:18px}
+
+/* Alur */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:16px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:.2s}
+.step:hover{border-color:var(--green-500);transform:translateY(-3px);box-shadow:var(--shadow)}
+.step .n{width:34px;height:34px;border-radius:10px;background:var(--green-600);color:#fff;font-family:'Poppins';font-weight:800;display:grid;place-items:center;margin-bottom:8px}
+.step.final .n{background:var(--yellow-500);color:var(--green-900)}
+.step b{display:block;font-size:.92rem;line-height:1.3}
+.step small{color:var(--muted)}
+.step.active{border-color:var(--green-600);background:var(--green-100)}
+.step .bar{height:6px;border-radius:6px;background:var(--green-100);margin-top:10px;overflow:hidden}
+.step .bar i{display:block;height:100%;background:var(--yellow-500);width:0;transition:width .3s}
+
+/* Panel pertemuan */
+.panel{margin-top:22px;background:#fff;border:2px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.panel-head{background:var(--green-600);color:#fff;padding:22px 24px}
+.panel-head h3{font-size:1.35rem}
+.panel-head p{color:#d7f2e0;margin-top:4px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{background:var(--yellow-500);color:var(--green-900);font-size:.75rem;font-weight:800;padding:3px 10px;border-radius:999px}
+.panel-body{padding:18px 24px 26px}
+details{border:1.5px solid var(--line);border-radius:14px;margin-bottom:10px;background:#fff}
+details[open]{border-color:var(--green-500)}
+summary{cursor:pointer;font-weight:800;padding:13px 16px;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--green-900)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";color:var(--green-600);font-weight:800}
+details[open] summary::after{content:"−"}
+.dbody{padding:2px 18px 16px}
+.dbody h4{margin:12px 0 4px;color:var(--green-700);font-size:.98rem}
+.dbody p{color:#2b4637;font-size:.95rem}
+.dbody ul{margin-left:20px;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:6px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--green-100);color:var(--green-900)}
+.tblwrap{overflow-x:auto}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer}
+.check:hover{background:var(--green-50)}
+.check input{width:20px;height:20px;accent-color:var(--green-600);flex:none;margin-top:2px}
+.check.done span{text-decoration:line-through;color:var(--muted)}
+.submit-box{background:var(--yellow-100);border:2px dashed var(--yellow-500);border-radius:14px;padding:16px;margin-top:14px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.submit-box b{color:var(--green-900)}
+
+/* Kuis */
+.q{margin-bottom:16px}
+.q p{font-weight:800;margin-bottom:6px}
+.opt{display:block;width:100%;text-align:left;font:inherit;padding:10px 14px;margin:5px 0;border-radius:12px;border:2px solid var(--line);background:#fff;cursor:pointer}
+.opt:hover{border-color:var(--green-500)}
+.opt.ok{background:var(--green-100);border-color:var(--green-600)}
+.opt.no{background:#fde8e6;border-color:#e0786e}
+.fb{font-size:.9rem;margin-top:4px;color:var(--green-700);font-weight:700}
+
+/* Proyek */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:20px}
+.card.y{background:var(--yellow-100);border-color:var(--yellow-500)}
+.card h3{font-size:1.05rem;color:var(--green-900);margin-bottom:8px}
+.prod{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0 22px}
+.prod div{background:var(--green-100);border-radius:14px;padding:14px;text-align:center;font-weight:800;font-size:.85rem}
+.prod div span{display:block;font-size:1.6rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabbtn{font:inherit;font-weight:800;border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;cursor:pointer;color:var(--green-900)}
+.tabbtn.active{background:var(--green-600);border-color:var(--green-600);color:#fff}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ok-box,.no-box{border-radius:14px;padding:14px 16px;font-size:.92rem}
+.ok-box{background:var(--green-100)}.no-box{background:#fde8e6}
+.ok-box b{color:var(--green-700)}.no-box b{color:#a63a2f}
+
+/* Penilaian */
+.bar-row{margin:12px 0}
+.bar-row .lbl{display:flex;justify-content:space-between;font-weight:700;font-size:.92rem;margin-bottom:4px}
+.bar-track{height:16px;background:var(--green-100);border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;border-radius:999px;background:var(--green-600);width:0;transition:width .9s ease}
+.bar-fill.y{background:var(--yellow-500)}
+
+/* Dosen */
+.dosen-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dosen-cards .card{display:flex;flex-direction:column;gap:10px}
+.dosen-cards .ic{font-size:1.8rem}
+.dosen-cards p{color:var(--muted);font-size:.92rem;flex:1}
+
+footer{background:var(--green-900);color:#cdeed8;padding:30px 0;text-align:center;font-size:.92rem}
+footer b{color:var(--yellow-400)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--green-900);color:#fff;padding:12px 20px;border-radius:14px;font-weight:700;transition:.3s;z-index:99;max-width:90%;text-align:center;border-left:6px solid var(--yellow-500)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:860px){
+  .hero .grid,.grid2,.two-col,.dosen-cards{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .prod{grid-template-columns:1fr 1fr}
+  .brand small{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot">💻</span> LMS Basic Computer</div>
+    <div class="links">
+      <a href="#beranda">Beranda</a>
+      <a href="#pertemuan">Pertemuan</a>
+      <a href="#proyek">Proyek Akhir</a>
+      <a href="#penilaian">Penilaian</a>
+      <a href="#dosen">Dosen</a>
+      <a class="cta" href="#" data-link="classroom">Masuk Kelas</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="beranda">
+  <div class="wrap grid">
+    <div>
+      <span class="chip">Semester 1 • 3 SKS (2 teori + 1 praktik)</span>
+      <h1>Basic Computer</h1>
+      <p class="sub">Literasi Digital dan Aplikasi Perkantoran — empat pertemuan blok, satu proyek akhir: PPT Pembelajaran IPA untuk Sekolah Dasar.</p>
+      <div class="who">
+        <div class="avatar">MH</div>
+        <div><b>M. Misbachul Huda, M.Pd.</b><small>Dosen Pengampu • STKIP Al Hikmah Surabaya</small></div>
+      </div>
+      <div class="btns">
+        <a class="btn y" href="#pertemuan">Mulai Belajar →</a>
+        <a class="btn w" href="#" data-link="classroom">Buka Google Classroom</a>
+      </div>
+    </div>
+    <div class="ring-card">
+      <div class="ring" id="ring" style="--p:0"><div id="ringTxt">0%</div></div>
+      <b>Progres belajarmu</b><br>
+      <small id="ringSub">Centang tugas &amp; kegiatan untuk melihat kemajuan. Tersimpan di perangkat ini.</small>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="ann" id="ann"><h3>📢 Pengumuman</h3><ul id="annList"></ul></div>
+</div>
+
+<section id="pertemuan">
+  <div class="wrap">
+    <h2 class="sec-title">Peta Pembelajaran</h2>
+    <p class="sec-sub">Klik pertemuan untuk membuka materi, kegiatan, tugas, rubrik, dan kuis cepat. Setiap pertemuan memakai pola sesi blok yang sama: pra-kelas → demonstrasi → praktik terbimbing → praktik mandiri → tugas terstruktur.</p>
+    <div class="steps" id="steps"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+</section>
+
+<section id="proyek" class="tint">
+  <div class="wrap">
+    <h2 class="sec-title">Proyek Akhir: PPT Pembelajaran IPA SD</h2>
+    <p class="sec-sub">Dikerjakan berkelompok (3 mahasiswa), dicicil setelah tiap pertemuan, dikumpulkan satu minggu setelah Pertemuan 4. Proyek ini sekaligus menjadi Portofolio Digital Terintegrasi (pengganti UTS &amp; UAS).</p>
+    <div class="prod">
+      <div><span>📝</span>Naskah perencanaan (Word)</div>
+      <div><span>📊</span>PPT 12–15 slide</div>
+      <div><span>🎨</span>Media Canva</div>
+      <div><span>📋</span>Google Form + analisis data</div>
+      <div><span>🗂️</span>Folder portofolio Drive</div>
+    </div>
+
+    <div class="tabs" id="ptabs"></div>
+    <div class="card" id="pcontent" style="margin-bottom:22px"></div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>🧩 Susunan Wajib PPT</h3>
+        <div class="tblwrap"><table>
+          <tr><th>Slide</th><th>Bagian</th></tr>
+          <tr><td>1</td><td>Sampul</td></tr><tr><td>2</td><td>Tujuan pembelajaran</td></tr>
+          <tr><td>3</td><td>Pemantik</td></tr><tr><td>4–8</td><td>Inti materi (min. 1 SmartArt/diagram + 1 gambar)</td></tr>
+          <tr><td>9</td><td>Kegiatan eksplorasi</td></tr><tr><td>10</td><td>Latihan interaktif</td></tr>
+          <tr><td>11</td><td>Rangkuman</td></tr><tr><td>12</td><td>Evaluasi (tautan/QR Google Form)</td></tr>
+          <tr><td>13</td><td>Hasil uji coba (grafik)</td></tr><tr><td>14</td><td>Daftar pustaka &amp; atribusi + pernyataan AI</td></tr>
+          <tr><td>15</td><td>Catatan guru (opsional)</td></tr>
+        </table></div>
+        <p style="margin-top:10px;font-size:.9rem;color:var(--muted)">Desain: maks. 3 warna utama, 2 jenis huruf, isi ≥ 24 pt, judul ≥ 32 pt, ± maks. 40 kata/slide.</p>
+      </div>
+      <div class="card y">
+        <h3>🤖 Aturan Penggunaan AI</h3>
+        <div class="ok-box" style="margin-bottom:10px"><b>✅ Boleh</b><ul style="margin:6px 0 0 18px"><li>Minta penjelasan konsep &amp; contoh</li><li>Minta ide kegiatan/pemantik, lalu dipilih &amp; disempurnakan</li><li>Cek tata bahasa tulisan sendiri</li><li>Ilustrasi AI — asal diungkapkan di log &amp; slide atribusi</li></ul></div>
+        <div class="no-box"><b>⛔ Tidak boleh</b><ul style="margin:6px 0 0 18px"><li>Menyalin keluaran AI tanpa menyunting &amp; memahami</li><li>Memakai rujukan AI tanpa cek sumber asli</li><li>Memasukkan data pribadi ke layanan AI</li><li>Tidak mengisi / memalsukan log penggunaan AI</li></ul></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>✅ Daftar Periksa Sebelum Mengumpulkan</h3>
+      <div id="finalChecks"></div>
+      <div class="submit-box">
+        <div><b>Siap mengumpulkan proyek?</b><br><small>Kumpulkan <u>satu tautan folder Google Drive</u> kelompok (akses pelihat/komentator untuk dosen). Tautan yang tidak bisa dibuka dianggap belum mengumpulkan.</small></div>
+        <a class="btn y" href="#" data-link="proyek">Kumpulkan Proyek Akhir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="penilaian">
+  <div class="wrap">
+    <h2 class="sec-title">Rencana Penilaian</h2>
+    <p class="sec-sub">Bobot usulan (dapat disesuaikan dengan kebijakan program studi). Penilaian berfokus pada unjuk kerja dan produk.</p>
+    <div class="grid2">
+      <div class="card" id="bars"></div>
+      <div class="card y">
+        <h3>📌 Penamaan Berkas Baku</h3>
+        <p>Tugas harian: <b>Nama_MataKuliah_JenisTugas_Tanggal</b></p>
+        <p style="margin-top:6px">Proyek akhir: <b>Proyek_IPA_NamaKelompok_JenisBerkas</b><br><small>contoh: Proyek_IPA_KelompokA_PPT.pptx</small></p>
+        <h3 style="margin-top:18px">🛡️ Integritas Akademik</h3>
+        <ul style="margin-left:18px;font-size:.93rem">
+          <li>Setiap tugas utama melampirkan <b>pernyataan integritas</b>, <b>laporan kemiripan</b> (bila ada), dan <b>log penggunaan AI</b>.</li>
+          <li>Angka similarity index <b>bukan vonis</b> plagiarisme.</li>
+          <li>Dosen dapat meminta sesi verifikasi singkat (3 menit).</li>
+        </ul>
+        <div class="btns"><a class="btn g small" href="#" data-link="logAI">📄 Template Log AI</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dosen" class="tint">
+  <div class="wrap">
+    <h2 class="sec-title">Ruang Dosen</h2>
+    <p class="sec-sub">Pintasan untuk M. Misbachul Huda, M.Pd. Tautan ini hanya bisa dibuka oleh akun Google yang diberi izin (akses dikendalikan oleh Google, bukan halaman ini).</p>
+    <div class="dosen-cards">
+      <div class="card"><div class="ic">📥</div><h3>Pengumpulan Tugas</h3><p>Lihat, beri komentar, dan nilai kiriman mahasiswa per tugas.</p><a class="btn g small" href="#" data-link="dosenClassroom">Buka Tugas Kelas</a></div>
+      <div class="card"><div class="ic">📈</div><h3>Rekap Respons (Sheets)</h3><p>Daftar seluruh pengumpulan, tautan berkas, dan waktu kirim dalam satu lembar.</p><a class="btn g small" href="#" data-link="dosenSheet">Buka Rekap</a></div>
+      <div class="card"><div class="ic">🗄️</div><h3>Folder Arsip Drive</h3><p>Semua berkas unggahan mahasiswa, tersusun otomatis per tugas.</p><a class="btn g small" href="#" data-link="dosenDrive">Buka Folder</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>LMS Basic Computer</b> • Program Studi/Kelas Anda • STKIP Al Hikmah Surabaya<br>
+    Dosen pengampu: M. Misbachul Huda, M.Pd.
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   PENGATURAN — ISI TAUTAN DI SINI (cukup bagian ini saja)
+   Kosongkan ("") jika belum ada; tombol akan memberi petunjuk.
+   ============================================================ */
+const CONFIG = {
+  links: {
+    classroom:      "",   // tautan undangan Google Classroom (kelas mahasiswa)
+    tugas1:         "",   // tautan pengumpulan Tugas 1 (Classroom / Google Form)
+    tugas2:         "",
+    tugas3:         "",
+    tugas4:         "",
+    portofolio:     "",
+    proyek:         "",   // pengumpulan Proyek Akhir (tautan folder Drive)
+    logAI:          "",   // tautan salinan template Log Penggunaan AI (Google Docs/Sheets)
+    dosenClassroom: "",
+    dosenSheet:     "",
+    dosenDrive:     ""
+  },
+  pengumuman: [
+    "Selamat datang! Siapkan akun Google aktif sebelum Pertemuan 1.",
+    "Lakukan tutorial pra-kelas (± 60 menit) sebelum setiap pertemuan.",
+    "Kelompok proyek akhir mendaftarkan topik IPA &amp; kelas kepada dosen di akhir Pertemuan 1."
+  ]
+};
+
+/* ====================== DATA KONTEN ====================== */
+const MEET = [
+{
+ id:"p1", n:1, judul:"Fondasi Ekosistem Digital", sub:"Windows &amp; manajemen file, penyimpanan awan, literasi digital, keamanan data, etika AI, integritas akademik",
+ tags:["CPMK-1","CPMK-6","CPMK-7","CPMK-8"], up:"tugas1", tugasLabel:"Tugas 1 (bobot 8%)",
+ materi:[
+  ["Konsep TIK &amp; Windows","Perangkat keras (input, proses, output, penyimpanan) dan perangkat lunak. Antarmuka Windows, File Explorer: membuat, menyalin, memindahkan, mengganti nama, mencari, mengompres berkas; memahami ekstensi (.docx .pptx .xlsx .pdf)."],
+  ["Penyimpanan awan &amp; pintasan","Google Drive/OneDrive: unggah, bagikan, hak akses (pelihat, pemberi komentar, penyunting), pencadangan. Pintasan: Ctrl+C/X/V/Z/Y/S/F, Alt+Tab, Windows+E."],
+  ["Literasi digital &amp; keamanan","Netiket, jejak digital, kata sandi kuat, autentikasi dua faktor, mengenali phishing, perlindungan data (UU No. 27 Tahun 2022)."],
+  ["Integritas akademik &amp; AI","Bentuk plagiarisme, Permendikbudristek No. 39 Tahun 2021. Prinsip AI: transparansi, akuntabilitas, perlindungan data; log penggunaan AI."]
+ ],
+ pra:["Tonton tutorial File Explorer &amp; Google Drive","Baca ringkasan kontrak kuliah &amp; norma akademik","Siapkan akun surel/Google yang aktif"],
+ keg:[["Pembukaan","Kontrak kuliah ringkas &amp; apersepsi","10 mnt"],["Pemaparan &amp; demonstrasi","Konsep TIK, Windows, awan, keamanan, plagiarisme &amp; etika AI","90 mnt"],["Praktik terbimbing","Folder portofolio, hak akses, 2FA, identifikasi phishing","100 mnt"],["Praktik mandiri &amp; penutup","Unjuk kerja berkas, diskusi kasus, penjelasan tugas","50 mnt"],["Tugas terstruktur","Mengerjakan Tugas 1","120 mnt"]],
+ tugas:{judul:"Tugas 1: Ruang Kerja Digital &amp; Pernyataan Integritas",
+  isi:"Tiga produk: (1) struktur folder portofolio di Drive/OneDrive dengan ≥ 5 subfolder baku (01_Fondasi, 02_Word, 03_Presentasi_Canva, 04_Excel_Google, 05_Refleksi) dan tautan berbagi pelihat untuk dosen; (2) tangkapan layar aktivasi autentikasi dua faktor (data sensitif disamarkan); (3) refleksi 250–300 kata analisis satu studi kasus + pernyataan integritas &amp; rencana penggunaan AI.",
+  cek:["Struktur folder + tautan berbagi untuk dosen","Bukti 2FA (data sensitif disamarkan)","Refleksi 250–300 kata + pernyataan integritas","Topik &amp; kelas proyek IPA sudah didaftarkan"]},
+ rubrik:[["Struktur folder &amp; penamaan",30],["Keamanan akun",20],["Kualitas refleksi &amp; analisis kasus",35],["Pernyataan integritas &amp; rencana AI",15]],
+ quiz:[
+  {q:"Pola penamaan berkas yang dianjurkan di mata kuliah ini?",o:["tugas_fix_final_revisi2","Nama_MataKuliah_JenisTugas_Tanggal","Dokumen baru (3)","FOTO123"],a:1,f:"Penamaan tertib memudahkan pengumpulan tugas dan penyusunan portofolio."},
+  {q:"Parafrasa tanpa menyebut sumber (patchwriting) termasuk…",o:["Gaya menulis yang sah","Plagiarisme","Sitasi tidak langsung","Pengayaan"],a:1,f:"Parafrasa tetap wajib mencantumkan sumber."}
+ ]
+},
+{
+ id:"p2", n:2, judul:"Penyusunan Dokumen Akademik", sub:"Microsoft Word, pengelola sitasi, dan pemeriksaan plagiarisme",
+ tags:["CPMK-2","CPMK-7"], up:"tugas2", tugasLabel:"Tugas 2 (bobot 12%)",
+ materi:[
+  ["Format dokumen dasar","Ukuran kertas, margin, huruf, spasi, indentasi, daftar berbutir/bernomor, tabulasi, penomoran halaman di footer (halaman awal tanpa nomor)."],
+  ["Styles, Heading &amp; struktur","Heading 1/2, Normal, Caption. Daftar isi otomatis (References) dan Update Field; navigasi dengan panel Navigation; tabel &amp; gambar dengan Insert Caption."],
+  ["Sitasi &amp; daftar pustaka","Kutipan langsung/tidak langsung, gaya APA 7 atau gaya institusi, fitur Citations &amp; Bibliography, Mendeley/Zotero + add-in Word."],
+  ["Pemeriksaan kemiripan","Turnitin/Plagiarism Checker X. Similarity index bukan vonis: telusuri bagian tersorot, perbaiki parafrasa &amp; atribusi, periksa ulang."]
+ ],
+ pra:["Pelajari tutorial Word: Styles &amp; Heading","Pasang Mendeley/Zotero + add-in Word","Siapkan 5 rujukan (jurnal/buku) untuk topik makalah"],
+ keg:[["Pembukaan","Bandingkan dokumen format manual vs Styles","10 mnt"],["Pemaparan &amp; demonstrasi","Page setup, Styles, tabel/gambar, daftar isi, sitasi, cek kemiripan","90 mnt"],["Praktik terbimbing","Rapikan naskah mentah, kerangka Heading, caption, daftar isi","100 mnt"],["Praktik mandiri &amp; penutup","Sitasi &amp; daftar pustaka otomatis, pemeriksaan kemiripan, refleksi","50 mnt"],["Tugas terstruktur","Mengerjakan Tugas 2","120 mnt"]],
+ tugas:{judul:"Tugas 2: Makalah Mini Terformat",
+  isi:"Makalah 3–5 halaman bertopik “Pemanfaatan Teknologi Digital dalam Pembelajaran”: halaman judul, daftar isi otomatis, pendahuluan–pembahasan–penutup bergaya Heading, ≥ 1 tabel &amp; 1 gambar bercaption, penomoran halaman benar, ≥ 5 sitasi via Mendeley/Zotero, daftar pustaka otomatis. Lampirkan laporan kemiripan + catatan perbaikan satu paragraf + log AI. Simpan di 02_Word.",
+  cek:["Daftar isi otomatis &amp; penomoran halaman","≥ 5 sitasi dari pengelola referensi + daftar pustaka otomatis","Tabel &amp; gambar bercaption, dirujuk di teks","Laporan kemiripan + catatan perbaikan + log AI"]},
+ rubrik:[["Pemformatan &amp; struktur dokumen",30],["Elemen dokumen otomatis",20],["Sitasi &amp; daftar pustaka",25],["Integritas akademik",25]],
+ quiz:[
+  {q:"Agar daftar isi otomatis dapat dibuat, judul bab harus diberi…",o:["Huruf tebal manual","Gaya Heading","Warna berbeda","Garis bawah"],a:1,f:"Styles/Heading membuat struktur dokumen terkendali dan daftar isi bisa dibuat otomatis."},
+  {q:"Similarity index 18% berarti…",o:["Pasti plagiat","Aman, tidak perlu dicek","Proporsi teks yang cocok dengan basis data — perlu ditelaah, bukan vonis","Dokumen ditolak sistem"],a:2,f:"Kutipan sah, daftar pustaka, dan frasa baku ikut menaikkan angka."}
+ ]
+},
+{
+ id:"p3", n:3, judul:"Komunikasi Visual", sub:"Presentasi efektif dengan PowerPoint dan perancangan media dengan Canva",
+ tags:["CPMK-3","CPMK-5","CPMK-8"], up:"tugas3", tugasLabel:"Tugas 3 (bobot 12%)",
+ materi:[
+  ["Prinsip desain &amp; alur","Satu gagasan utama per slide, frasa kunci, kontras, keselarasan, ruang kosong, maks. 2 jenis huruf &amp; palet terbatas. Alur storytelling: pembuka → masalah → pengembangan → penutup."],
+  ["Fitur utama PowerPoint","Tema &amp; layout, Slide Master ringkas, gambar/ikon/bentuk/tabel/grafik, SmartArt, animasi &amp; transisi fungsional, Presenter View, simpan .pptx &amp; .pdf."],
+  ["Canva","Templat poster/infografis/lembar kerja, elemen &amp; grid, hierarki visual, ekspor PNG/PDF, berbagi tautan dengan hak akses tepat."],
+  ["Hak cipta aset","Periksa lisensi gambar/ikon/musik, bedakan gratis-berbayar-lisensi terbuka, cantumkan atribusi; ungkapkan bila memakai AI generatif."]
+ ],
+ pra:["Buka kembali makalah Tugas 2 sebagai bahan presentasi","Tonton tutorial PowerPoint (tema, layout, SmartArt) &amp; Canva","Kumpulkan aset visual berlisensi jelas"],
+ keg:[["Pembukaan","Bandingkan slide padat teks vs ringkas","10 mnt"],["Pemaparan &amp; demonstrasi","Prinsip desain, storytelling, PowerPoint, Canva, atribusi aset","90 mnt"],["Praktik terbimbing","Kerangka alur, deck 8–10 slide dari makalah mini","100 mnt"],["Praktik mandiri &amp; penutup","Infografis Canva + lightning talk 3 menit","50 mnt"],["Tugas terstruktur","Menyempurnakan Tugas 3","120 mnt"]],
+ tugas:{judul:"Tugas 3: Paket Komunikasi Visual",
+  isi:"Ubah makalah Tugas 2 menjadi (1) deck PowerPoint 8–10 slide beralur jelas dengan ≥ 1 SmartArt/diagram, 1 grafik/tabel sederhana, dan slide sumber &amp; atribusi; (2) satu infografis/poster Canva untuk sasaran pembaca tertentu (PNG/PDF). Simpan di 03_Presentasi_Canva beserta tautan Canva dan log AI.",
+  cek:["Deck 8–10 slide + SmartArt + slide atribusi","Infografis/poster Canva diekspor (PNG/PDF)","Tautan Canva &amp; log AI disertakan","Siap lightning talk 3 menit"]},
+ rubrik:[["Isi &amp; alur presentasi",25],["Desain slide",25],["Desain media di Canva",25],["Penyampaian &amp; etika aset",25]],
+ quiz:[
+  {q:"Pedoman isi slide yang efektif?",o:["Sebanyak mungkin teks","Satu gagasan utama, frasa kunci","Animasi di setiap objek","Tiga jenis huruf lebih"],a:1,f:"Pesan yang jelas lebih penting daripada banyaknya efek."},
+  {q:"Sebelum memakai gambar dari internet, yang paling perlu dicek adalah…",o:["Ukuran file","Lisensi &amp; sumbernya","Jumlah warna","Nama penguploadnya saja"],a:1,f:"Lisensi jelas + atribusi di slide terakhir adalah wajib."}
+ ]
+},
+{
+ id:"p4", n:4, judul:"Data, Kolaborasi &amp; Portofolio", sub:"Microsoft Excel, Google Workspace (Docs, Sheets, Form, Drive), dan integrasi portofolio",
+ tags:["CPMK-4","CPMK-6","CPMK-1","CPMK-8"], up:"tugas4", tugasLabel:"Tugas 4 (bobot 8%)",
+ materi:[
+  ["Dasar Excel","Workbook, worksheet, sel, rentang; rumus diawali “=”; SUM, AVERAGE, MAX, MIN, IF; referensi relatif vs absolut ($). Catatan: pada pengaturan regional Indonesia pemisah argumen umumnya titik koma (;)."],
+  ["Grafik, urut, saring","Kolom untuk membandingkan kategori, garis untuk perkembangan, lingkaran hanya untuk proporsi sederhana. Sort &amp; Filter untuk peringkat dan siswa belum tuntas. Gunakan data fiktif."],
+  ["Google Workspace","Docs/Sheets: hak akses, edit serentak, komentar, riwayat versi. Google Form: jenis pertanyaan, section, validasi, tautan respons ke Sheets; minimalkan data pribadi."],
+  ["Portofolio terintegrasi","Satu folder Drive berisi produk Tugas 1–4 + halaman indeks (daftar produk, tautan, pemetaan capaian) + refleksi akhir 300–400 kata."]
+ ],
+ pra:["Pelajari tutorial Excel (fungsi dasar &amp; grafik) dan Google Forms","Siapkan data fiktif nilai 10 peserta didik (tugas, UTS, UAS)"],
+ keg:[["Pembukaan","Kuis cepat: rumus, referensi sel, hak akses","10 mnt"],["Pemaparan &amp; demonstrasi","Excel, grafik, Sort/Filter, Sheets, Docs, Form","90 mnt"],["Praktik terbimbing","Rekap nilai + status + grafik + filter; kerja kelompok di Sheets","100 mnt"],["Praktik mandiri &amp; penutup","Google Form survei, tautan ke Sheets, rapikan folder portofolio","50 mnt"],["Tugas terstruktur","Tugas 4 + portofolio akhir","120 mnt"]],
+ tugas:{judul:"Tugas 4: Rekap Nilai, Survei Daring, dan Kolaborasi",
+  isi:"(1) Excel rekap nilai fiktif ≥ 10 peserta didik: SUM, AVERAGE, MAX, MIN, IF status ketuntasan, ≥ 1 grafik, Sort &amp; Filter. (2) Google Form survei ≥ 5 pertanyaan berjenis berbeda, ada validasi, respons tertaut Sheets, ≥ 5 respons uji. (3) Satu Google Docs kelompok dengan riwayat versi yang menunjukkan kontribusi tiap anggota.",
+  cek:["Excel: SUM, AVERAGE, MAX, MIN, IF + grafik + Sort/Filter","Google Form ≥ 5 pertanyaan, validasi, tertaut Sheets","Google Docs kelompok dengan riwayat versi","Data fiktif / minimal, tanpa data pribadi sensitif"]},
+ rubrik:[["Pengolahan data di Excel",30],["Grafik &amp; penyajian data",20],["Google Form &amp; kolaborasi",30],["Tata kelola arsip &amp; perlindungan data",20]],
+ quiz:[
+  {q:"Rumus status tuntas jika nilai di A2 ≥ 70 (pengaturan Indonesia)?",o:["=IF(A2>=70;\"Tuntas\";\"Belum\")","IF A2 70 Tuntas","=SUM(A2;70)","=AVERAGE(A2>=70)"],a:0,f:"Rumus diawali “=” dan argumen dipisah titik koma pada pengaturan regional Indonesia."},
+  {q:"Grafik paling tepat untuk membandingkan jumlah jawaban benar antarsoal?",o:["Grafik kolom","Grafik lingkaran dengan 12 kategori","Tabel tanpa grafik","Grafik radar"],a:0,f:"Kolom cocok untuk membandingkan kategori."}
+ ]
+},
+{
+ id:"uas", n:"★", judul:"Ujian Akhir: Portofolio &amp; Proyek", sub:"Portofolio Digital Terintegrasi — pengganti UTS, UAS, dan proyek akhir (bobot 40%)", final:true,
+ tags:["Semua CPMK","CPL-S9","CPL-P3","CPL-KU2","CPL-KK4"], up:"portofolio", tugasLabel:"Portofolio (bobot 40%)",
+ materi:[
+  ["Apa yang dinilai","Seluruh produk Tugas 1–4 dan Proyek PPT IPA SD tersusun dalam satu folder Drive, dilengkapi indeks portofolio dan refleksi akhir."],
+  ["Verifikasi keaslian","Dosen dapat menetapkan sesi verifikasi singkat (wawancara/demonstrasi 3 menit) pada sampel mahasiswa; presentasi kelompok 7–10 menit (5 menit memperagakan PPT, 2–5 menit tanya jawab)."]
+ ],
+ pra:["Pastikan seluruh tautan dapat dibuka oleh dosen","Lengkapi log AI &amp; laporan kemiripan di 05_Integritas"],
+ keg:[["Batas pengumpulan","Satu minggu setelah Pertemuan 4 (ditetapkan dosen)","—"],["Presentasi proyek","7–10 menit per kelompok","7–10 mnt"]],
+ tugas:{judul:"Portofolio Digital Terintegrasi",
+  isi:"Kumpulkan tautan folder Google Drive berisi produk Tugas 1–4 dalam struktur terencana, indeks portofolio, dan refleksi akhir 300–400 kata (kompetensi yang dikuasai, kesulitan, rencana penerapan di profesi guru, penggunaan AI).",
+  cek:["Produk Tugas 1–4 lengkap &amp; dapat dibuka","Indeks portofolio (daftar produk, tautan, pemetaan capaian)","Refleksi akhir 300–400 kata","Tautan folder dapat diakses dosen"]},
+ rubrik:[["Kelengkapan produk",30],["Kualitas produk",30],["Integritas akademik &amp; etika",20],["Indeks &amp; refleksi",20]],
+ quiz:[
+  {q:"Tautan folder portofolio tidak bisa dibuka dosen. Akibatnya?",o:["Tidak masalah","Dianggap belum mengumpulkan","Otomatis nilai penuh","Dosen yang minta akses ulang"],a:1,f:"Selalu uji tautan dari akun lain sebelum mengumpulkan."}
+ ]
+}
+];
+
+const PROJ = [
+ {t:"Tahap 1 • setelah P1", h:"Menyiapkan ruang kerja &amp; menetapkan topik", s:"Manajemen berkas, Google Drive, netiket, etika AI",
+  l:["Bentuk kelompok (3 orang), tentukan peran, pilih topik IPA &amp; kelas (tidak boleh sama dengan kelompok lain)","Buat folder Proyek_IPA_NamaKelompok + 5 subfolder: 01_Perencanaan, 02_PPT, 03_Canva, 04_Evaluasi_Data, 05_Integritas","Siapkan Lembar Topik (Google Docs, 1 halaman) dan berkas Log Penggunaan AI"], o:"Folder Drive tertata + Lembar Topik di 01_Perencanaan"},
+ {t:"Tahap 2 • setelah P2", h:"Menyusun naskah perencanaan di Word", s:"Word, Styles, daftar isi, Mendeley/Zotero, cek kemiripan",
+  l:["Naskah 4–6 hlm: A Identitas, B Tujuan (2–3, kata kerja operasional), C Ringkasan materi (≥ 5 sitasi, ≥ 3 sumber), D Storyboard (tabel), E Daftar pustaka otomatis","Daftar isi otomatis, nomor halaman, tabel bercaption","Jalankan cek kemiripan, perbaiki, periksa ulang; simpan laporan di 05_Integritas"], o:"Naskah (.docx) di 01_Perencanaan + laporan kemiripan di 05_Integritas"},
+ {t:"Tahap 3 • setelah P3", h:"Membuat PPT &amp; media visual", s:"PowerPoint, SmartArt, animasi fungsional, Canva",
+  l:["Ubah storyboard menjadi PPT 12–15 slide sesuai susunan wajib","Buat 1 media Canva (infografis/poster/LKPD) yang berbeda isi dari slide &amp; siap dipakai siswa","Ekspor .pptx + .pdf dan .png/.pdf; catat sumber &amp; lisensi aset untuk slide atribusi"], o:"PPT di 02_PPT + media Canva di 03_Canva"},
+ {t:"Tahap 4 • setelah P4", h:"Evaluasi, analisis hasil &amp; portofolio", s:"Google Form, Excel/Sheets, grafik, kolaborasi",
+  l:["Google Form: 5 soal (≥ 2 jenis, kunci &amp; skor otomatis) + 3 angket skala 1–5","Uji coba ≥ 10 responden dengan kode R01–R10 (tanpa data pribadi)","Olah di Sheets/Excel: SUM, AVERAGE, MAX, MIN, IF (batas tuntas mis. 70), 1 grafik + interpretasi","Masukkan grafik ke slide hasil uji coba, perbaiki slide, lengkapi indeks &amp; refleksi kelompok"], o:"Tautan Form, Excel di 04_Evaluasi_Data, PPT final, halaman indeks"}
+];
+
+const FINAL = [
+ "Folder Drive punya 5 subfolder dan bisa dibuka dosen","Lembar Topik &amp; Log Penggunaan AI sudah terisi",
+ "Naskah: daftar isi otomatis, nomor halaman, tabel storyboard bercaption, ≥ 5 sitasi, daftar pustaka otomatis",
+ "Laporan kemiripan dibaca, bagian bermasalah diperbaiki, laporan akhir tersimpan","PPT 12–15 slide, semua bagian wajib ada",
+ "Tidak ada slide terlalu padat; huruf terbaca; kontras baik","Media Canva diekspor dan tautan dicantumkan",
+ "Google Form: 5 soal + 3 angket, tertaut Sheets, ≥ 10 responden","Excel memuat SUM, AVERAGE, MAX, MIN, IF + 1 grafik &amp; interpretasi",
+ "Grafik uji coba masuk slide &amp; perbaikan dilakukan","Slide atribusi: sumber gambar/ikon + pernyataan AI","Indeks portofolio &amp; refleksi kelompok dibuat"
+];
+
+const BOBOT = [["Tugas 1: Ruang Kerja Digital",8],["Tugas 2: Makalah Mini",12],["Tugas 3: Paket Komunikasi Visual",12],["Tugas 4: Rekap Nilai &amp; Survei",8],["Portofolio Digital Terintegrasi",40],["Keaktifan, sikap &amp; etika akademik",20]];
+
+/* ====================== LOGIKA ====================== */
+const $ = s => document.querySelector(s);
+let state = {};
+try { state = JSON.parse(localStorage.getItem("lms-basic-computer") || "{}"); } catch(e){ state = {}; }
+function save(){ try{ localStorage.setItem("lms-basic-computer", JSON.stringify(state)); }catch(e){} }
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.remove("show"),3200); }
+
+/* Tautan: semua elemen [data-link] */
+document.querySelectorAll("[data-link]").forEach(a=>bindLink(a));
+function bindLink(a){
+  a.addEventListener("click",e=>{
+    const url = CONFIG.links[a.dataset.link];
+    if(url){ a.href=url; a.target="_blank"; a.rel="noopener"; }
+    else { e.preventDefault(); toast("Tautan belum diisi. Dosen: edit bagian CONFIG di file ini."); }
+  });
+}
+
+/* Pengumuman */
+$("#annList").innerHTML = CONFIG.pengumuman.map(x=>`<li>${x}</li>`).join("");
+
+/* Progres */
+function itemsOf(m){ return [...m.pra.map((_,i)=>`${m.id}-pra-${i}`), ...m.tugas.cek.map((_,i)=>`${m.id}-tgs-${i}`)]; }
+function pctOf(ids){ return ids.length ? Math.round(ids.filter(k=>state[k]).length/ids.length*100) : 0; }
+function updateProgress(){
+  const all = MEET.flatMap(itemsOf).concat(FINAL.map((_,i)=>`fin-${i}`));
+  const p = pctOf(all);
+  $("#ring").style.setProperty("--p",p); $("#ringTxt").textContent=p+"%";
+  MEET.forEach(m=>{ const b=document.querySelector(`#st-${m.id} .bar i`); if(b) b.style.width=pctOf(itemsOf(m))+"%"; });
+}
+
+/* Alur pertemuan */
+let current = "p1";
+function renderSteps(){
+  $("#steps").innerHTML = MEET.map(m=>`
+   <button class="step ${m.final?'final':''} ${m.id===current?'active':''}" id="st-${m.id}" data-id="${m.id}">
+     <div class="n">${m.n}</div><b>${m.final?'Ujian Akhir':'Pertemuan '+m.n}</b><small>${m.judul}</small>
+     <div class="bar"><i></i></div>
+   </button>`).join("");
+  document.querySelectorAll(".step").forEach(b=>b.onclick=()=>{ current=b.dataset.id; renderSteps(); renderPanel(); updateProgress(); });
+}
+function checkList(ids, labels){
+  return labels.map((l,i)=>`<label class="check ${state[ids[i]]?'done':''}"><input type="checkbox" data-k="${ids[i]}" ${state[ids[i]]?'checked':''}><span>${l}</span></label>`).join("");
+}
+function renderPanel(){
+  const m = MEET.find(x=>x.id===current);
+  $("#panel").innerHTML = `
+  <div class="panel-head"><h3>${m.final?'Ujian Akhir':'Pertemuan '+m.n}: ${m.judul}</h3><p>${m.sub}</p>
+    <div class="tags">${m.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>
+  <div class="panel-body">
+    <details open><summary>📚 Uraian Materi</summary><div class="dbody">${m.materi.map(x=>`<h4>${x[0]}</h4><p>${x[1]}</p>`).join("")}</div></details>
+    <details><summary>🗓️ Pra-kelas &amp; Kegiatan Pembelajaran</summary><div class="dbody">
+      <h4>Pra-kelas (mandiri)</h4>${checkList(m.pra.map((_,i)=>`${m.id}-pra-${i}`), m.pra)}
+      <h4>Alur sesi</h4><div class="tblwrap"><table><tr><th>Tahap</th><th>Kegiatan</th><th>Waktu</th></tr>${m.keg.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table></div>
+    </div></details>
+    <details open><summary>📝 ${m.tugas.judul}</summary><div class="dbody">
+      <p>${m.tugas.isi}</p><h4>Checklist pengerjaan</h4>
+      ${checkList(m.tugas.cek.map((_,i)=>`${m.id}-tgs-${i}`), m.tugas.cek)}
+      <div class="submit-box"><div><b>Siap mengumpulkan?</b><br><small>${m.tugasLabel} — unggah berkas / tautan Drive.</small></div>
+      <a class="btn y" href="#" data-link="${m.up}">⬆️ Kumpulkan Tugas</a></div>
+    </div></details>
+    <details><summary>🎯 Rubrik Penilaian</summary><div class="dbody"><div class="tblwrap"><table><tr><th>Aspek</th><th>Bobot</th></tr>${m.rubrik.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}%</td></tr>`).join("")}</table></div></div></details>
+    <details><summary>🧠 Kuis Cepat</summary><div class="dbody">${m.quiz.map((q,qi)=>`
+      <div class="q" data-qi="${qi}"><p>${qi+1}. ${q.q}</p>${q.o.map((o,oi)=>`<button class="opt" data-oi="${oi}">${o}</button>`).join("")}<div class="fb"></div></div>`).join("")}</div></details>
+  </div>`;
+  $("#panel").querySelectorAll("[data-link]").forEach(bindLink);
+  $("#panel").querySelectorAll(".check input").forEach(c=>c.onchange=()=>{ state[c.dataset.k]=c.checked; c.parentElement.classList.toggle("done",c.checked); save(); updateProgress(); });
+  $("#panel").querySelectorAll(".q").forEach(box=>{
+    const q = m.quiz[+box.dataset.qi];
+    box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+      box.querySelectorAll(".opt").forEach(x=>{x.classList.remove("ok","no");});
+      const ok = +b.dataset.oi===q.a;
+      b.classList.add(ok?"ok":"no");
+      if(!ok) box.querySelectorAll(".opt")[q.a].classList.add("ok");
+      box.querySelector(".fb").textContent = (ok?"✅ Tepat! ":"❌ Belum tepat. ")+q.f;
+    });
+  });
+}
+
+/* Proyek */
+let pi = 0;
+function renderProj(){
+  $("#ptabs").innerHTML = PROJ.map((p,i)=>`<button class="tabbtn ${i===pi?'active':''}" data-i="${i}">${p.t}</button>`).join("");
+  const p = PROJ[pi];
+  $("#pcontent").innerHTML = `<h3>${p.h}</h3><p style="color:var(--muted);margin-bottom:8px"><small>Keterampilan: ${p.s}</small></p>
+   <ul style="margin-left:20px">${p.l.map(x=>`<li>${x}</li>`).join("")}</ul>
+   <div class="ok-box" style="margin-top:12px"><b>Hasil yang dikumpulkan:</b> ${p.o}</div>`;
+  document.querySelectorAll(".tabbtn").forEach(b=>b.onclick=()=>{ pi=+b.dataset.i; renderProj(); });
+}
+function renderFinal(){
+  $("#finalChecks").innerHTML = checkList(FINAL.map((_,i)=>`fin-${i}`), FINAL);
+  $("#finalChecks").querySelectorAll("input").forEach(c=>c.onchange=()=>{ state[c.dataset.k]=c.checked; c.parentElement.classList.toggle("done",c.checked); save(); updateProgress(); });
+}
+
+/* Bobot */
+function renderBars(){
+  $("#bars").innerHTML = "<h3>⚖️ Komponen &amp; Bobot (total 100%)</h3>" + BOBOT.map((b,i)=>`
+    <div class="bar-row"><div class="lbl"><span>${b[0]}</span><span>${b[1]}%</span></div>
+    <div class="bar-track"><div class="bar-fill ${i===4?'y':''}" data-w="${b[1]*2.2}"></div></div></div>`).join("");
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ document.querySelectorAll(".bar-fill").forEach(f=>f.style.width=Math.min(100,f.dataset.w)+"%"); io.disconnect(); }}));
+  io.observe($("#bars"));
+}
+
+renderSteps(); renderPanel(); renderProj(); renderFinal(); renderBars(); updateProgress();
+</script>
+</body>
+</html>
